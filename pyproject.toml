@@ -1,6 +1,6 @@
 [project]
 name = "file-timestamp-formatter"
-version = "0.1.0"
+version = "0.1.1"
 description = "Turns os.stat_result timestamps into ISO 8601 strings with a fixed UTC offset, stdlib only."
 requires-python = ">=3.10"
 dependencies = []
