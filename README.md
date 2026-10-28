@@ -29,3 +29,10 @@ The trade-off: the offset is fixed and caller-supplied. We do not try to resolve
 - **Fractional seconds are truncated** when `timespec="seconds"` (the default). Pass `timespec="microseconds"` to keep sub-second precision; do not try to recover it after the fact.
 - **Pre-epoch timestamps** (before 1970-01-01T00:00:00Z) are supported and produce correctly negative dates.
 - **Offset range** is clamped to ±1440 minutes (±24h). POSIX permits up to 24:00 inclusive; anything beyond that is treated as a programming error.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
